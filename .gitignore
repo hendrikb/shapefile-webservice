@@ -16,3 +16,7 @@ tmp
 .yardoc
 _yardoc
 doc/
+data/*.dbf
+data/*.shp
+data/*.shx
+
