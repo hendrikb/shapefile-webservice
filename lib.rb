@@ -4,7 +4,7 @@ require 'pry'
 
 class Converter
 
-  def self.latlon2plz lat, lon
+  def self.latlon2info lat, lon
     result = query_file lat, lon
 
     if result.nil? then return {} end
@@ -17,6 +17,7 @@ class Converter
   def self.convert_to_json result
     result.attributes
   end
+
   def self.query_file lat, lon
     factory = ::RGeo::Cartesian.preferred_factory()
     point = factory.point lat, lon
