@@ -1,6 +1,7 @@
 require 'rgeo'
 require 'rgeo-shapefile'
 require 'pry'
+require 'json'
 
 class LatLonService
 
@@ -38,8 +39,7 @@ class LatLonService
 
   private
   def convert_to_json result
-    # TODO really convert to json here
-    result.attributes
+    result.attributes.to_json
   end
 
 end
