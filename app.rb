@@ -6,7 +6,7 @@ require 'sinatra'
 require './lib.rb'
 
 set :haml, :format => :html5
-LATLON_SERVICE = LatLonService.new('data/post_pl.shp')
+LATLON_SERVICE = LatLon::Service.new('data/post_pl.shp')
 
 get '/' do
   haml :index
