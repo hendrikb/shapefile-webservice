@@ -6,6 +6,7 @@ require 'sinatra'
 require './lib.rb'
 
 set :haml, :format => :html5
+set :service, LatLonService.new('data/post_pl.shp')
 
 get '/' do
   haml :index
@@ -16,14 +17,13 @@ get '/app.js' do
 end
 
 
+
 get '/lonlat2info/:lat/:lon' do
-  bring_up_service
-  @service.latlon2info params[:lon].to_f, params[:lat].to_f
+  options.service.latlon2info params[:lon].to_f, params[:lat].to_f
 end
 
 
 private
-def bring_up_service
-  @service ||= LatLonService.new 'data/post_pl.shp'
-end
+
+
 
