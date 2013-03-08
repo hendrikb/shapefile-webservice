@@ -7,6 +7,7 @@ class LatLonService
 
 
   def initialize shp_file
+    puts "setting up whole new data structure"
     @factory = ::RGeo::Cartesian.preferred_factory()
     @records = []
     RGeo::Shapefile::Reader.open(shp_file) do |file|
@@ -14,6 +15,7 @@ class LatLonService
         @records << record
       end
     end
+    puts "done.... GO!"
   end
 
 
@@ -22,7 +24,10 @@ class LatLonService
 
     result = {}
     @records.each do |record|
-      result = record if record.geometry.contains? point
+      if record.geometry.contains? point
+        result = record
+        break
+      end
     end
 
     convert_to_json result
