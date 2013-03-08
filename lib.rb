@@ -1,13 +1,10 @@
+# encoding: UTF-8
 require 'rgeo'
 require 'rgeo-shapefile'
 require 'pry'
-require 'json'
 
 module LatLon
   class Service
-
-
-
     def initialize shp_file
       puts "setting up whole new data structure"
       @factory = ::RGeo::Cartesian.preferred_factory()
@@ -20,7 +17,6 @@ module LatLon
       puts "done.... GO!"
     end
 
-
     def latlon2info lat, lon
       point = @factory.point lat, lon
 
@@ -32,14 +28,6 @@ module LatLon
       raise NoRecordFound
     end
 
-
-
-
-    private
-    def convert_to_json result
-      result.attributes.to_json
-    end
-
   end
-  class NoRecordFound < Error ; end
+  class NoRecordFound < Exception ; end
 end
