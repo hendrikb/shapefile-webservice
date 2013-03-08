@@ -6,16 +6,17 @@ strictly work in progress
 Usage
 -----
 
-Move your Shapefiles into data, open lib.rb and change the path to shape file.
+Move your Shapefiles into data/, open app.rb and change the path to shape file
+(SHAPE_FILE constant).
 
 Run sinatra app: ruby app.rb
 
-Open Browser.
+Open Browser at http://localhost:4567/.
 
 See app.rb's routes for possible options.
 
 
 Note
 ----
-
-Clicking on the Map and triggering of the lanlon2plz is not yet possible!
+You might find example Berlin ZIP Code shapefile data at:
+http://www.metaspatial.net/downloads/plz.tar.gz
