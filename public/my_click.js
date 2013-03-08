@@ -54,8 +54,12 @@ OpenLayers.Control.Click = OpenLayers.Class(OpenLayers.Control, {
 
   trigger: function(e) {
     var lonlat = map.getLonLatFromPixel(e.xy);
-    alert("You clicked near " + lonlat.lat + " N, " +
-          + lonlat.lon + " E");
+    // alert("You clicked near " + lonlat.lat + " N, " +
+    //       + lonlat.lon + " E");
+    $.get('lonlat2info/' + lonlat.lat + '/' + lonlat.lon, function(data) {
+      alert(data);
+    })
+
   }
 
 });
