@@ -7,6 +7,7 @@ class LatLonService
 
 
   def initialize shp_file
+    @factory = ::RGeo::Cartesian.preferred_factory()
     @records = []
     RGeo::Shapefile::Reader.open(shp_file) do |file|
       file.each do |record|
@@ -17,8 +18,7 @@ class LatLonService
 
 
   def latlon2info lat, lon
-    factory = ::RGeo::Cartesian.preferred_factory()
-    point = factory.point lat, lon
+    point = @factory.point lat, lon
 
     result = {}
     @records.each do |record|
