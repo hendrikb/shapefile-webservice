@@ -2,32 +2,40 @@ require 'rgeo'
 require 'rgeo-shapefile'
 require 'pry'
 
-class Converter
+class LatLonService
 
-  def self.latlon2info lat, lon
-    result = query_file lat, lon
 
-    if result.nil? then return {} end
+
+  def initialize shp_file
+    @records = []
+    RGeo::Shapefile::Reader.open(shp_file) do |file|
+      file.each do |record|
+        @records << record
+      end
+    end
+  end
+
+
+  def latlon2info lat, lon
+    factory = ::RGeo::Cartesian.preferred_factory()
+    point = factory.point lat, lon
+
+    result = {}
+    @records.each do |record|
+      result = record if record.geometry.contains? point
+    end
 
     convert_to_json result
   end
 
 
+
+
   private
-  def self.convert_to_json result
+  def convert_to_json result
+    # TODO really convert to json here
     result.attributes
   end
 
-  def self.query_file lat, lon
-    factory = ::RGeo::Cartesian.preferred_factory()
-    point = factory.point lat, lon
-
-    RGeo::Shapefile::Reader.open('data/post_pl.shp') do |file|
-      # puts "File contains #{file.num_records} records."
-      file.each do |record|
-        return record if record.geometry.contains? point
-      end
-    end
-  end
 end
 

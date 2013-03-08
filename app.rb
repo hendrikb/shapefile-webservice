@@ -17,5 +17,13 @@ end
 
 
 get '/lonlat2info/:lat/:lon' do
-  Converter.latlon2info params[:lon].to_f, params[:lat].to_f
+  bring_up_service
+  @service.latlon2info params[:lon].to_f, params[:lat].to_f
 end
+
+
+private
+def bring_up_service
+  @service ||= LatLonService.new 'data/post_pl.shp'
+end
+
