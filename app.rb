@@ -22,8 +22,3 @@ get '/lonlat2info/:lat/:lon' do
   LATLON_SERVICE.latlon2info params[:lon].to_f, params[:lat].to_f
 end
 
-
-private
-
-
-
