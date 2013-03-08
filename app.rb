@@ -24,7 +24,11 @@ end
 
 get '/lonlat2info/:lat/:lon' do
   begin
-    convert_to_json LATLON_SERVICE.latlon2info params[:lon].to_f, params[:lat].to_f
+    results = LATLON_SERVICE.latlon2info params[:lon].to_f, params[:lat].to_f
+    results.attributes.each_pair do |key,val|
+      results.attributes[key] = val.force_encoding('iso-8859-1').encode('utf-8') if val.is_a?(String)
+    end
+    convert_to_json results
   rescue LatLon::NoRecordFound
     {error: 'No Record found for that location'}.to_json
   end
