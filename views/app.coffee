@@ -13,19 +13,11 @@ map.setCenter center_of_germany,0
 markers = new OpenLayers.Layer.Markers "Markers"
 map.addLayer markers
 
-
-
-
-
-areas = new OpenLayers.Layer.Vector "Postleitzahlen"
-areas.addFeatures ->
-
-map.addLayer areas
-
 size = new OpenLayers.Size 21,25
 offset = new OpenLayers.Pixel -(size.w/2), -size.h
 icon = new OpenLayers.Icon 'http://www.openlayers.org/dev/img/marker.png', size, offset
 markers.addMarker new OpenLayers.Marker berlin,icon
 
 map.zoomTo 7
+
 
