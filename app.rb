@@ -9,7 +9,8 @@ require 'sinatra'
 require './lib.rb'
 
 set :haml, :format => :html5
-SHAPE_FILE = 'data/post_pl.shp'
+SHAPE_FILE_DIR = 'data/shapefiles/'
+SHAPE_FILE = 'data/shapefiles/post_pl.shp'
 LATLON_SERVICE = LatLon::Service.new(SHAPE_FILE)
 
 get '/' do
